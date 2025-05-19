@@ -1,0 +1,8 @@
+includes:
+  - vendor/shipmonk/phpstan-rules/rules.neon
+
+parameters:
+	level: 6
+	paths:
+		- src
+		- tests

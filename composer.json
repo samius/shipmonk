@@ -1,0 +1,40 @@
+{
+    "name": "samius/sorted-linked-list",
+    "version": "1.0.0",
+    "description": "Homework for ShipMonk",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Samius\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Milan Krupa",
+            "email": "samius05@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "*",
+        "phpunit/phpunit": "*",
+        "shipmonk/phpstan-rules": "*",
+        "symplify/easy-coding-standard": "*"
+    },
+    "scripts": {
+        "ecs": [
+            "vendor/bin/ecs check src tests"
+        ],
+        "ecs-fix": [
+            "vendor/bin/ecs check src tests --fix"
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan analyse src tests"
+        ],
+        "phpunit": [
+            "vendor/bin/phpunit"
+        ]
+    }
+}
