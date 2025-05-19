@@ -55,13 +55,7 @@ $list->count(); // 3
 
 $list->isValueCompatible(1); // true
 $list->isValueCompatible('a'); // false
-
-
-
-
-
-
-
+```
 
 ## Checking the homework
 Or you can just clone this repository and run tests, static analysis, and code style checks
