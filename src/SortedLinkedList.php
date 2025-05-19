@@ -92,7 +92,7 @@ final class SortedLinkedList implements \IteratorAggregate, \Countable
      */
     public function contains(int|string $value): bool
     {
-        if (!$this->isCompatibleType($value)) {
+        if (!$this->isValueCompatible($value)) {
             return false;
         }
 
@@ -107,7 +107,7 @@ final class SortedLinkedList implements \IteratorAggregate, \Countable
         return false;
     }
 
-    public function isCompatibleType(string|int $value): bool
+    public function isValueCompatible(string|int $value): bool
     {
         if (null === $this->type) {
             return true;
@@ -145,6 +145,11 @@ final class SortedLinkedList implements \IteratorAggregate, \Countable
     public function count(): int
     {
         return $this->count;
+    }
+    
+    public function isEmpty(): bool
+    {
+        return $this->count === 0;
     }
 
     /**

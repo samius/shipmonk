@@ -9,14 +9,10 @@ class SortedLinkedListTest extends TestCase
     public function testInsertInt(): void
     {
         $list = new SortedLinkedList();
-        $this->assertCount(0, $list);
         $list->insert(5);
-        $this->assertCount(1, $list);
         $list->insert(3);
         $list->insert(3);
-        $this->assertCount(3, $list);
         $list->insert(8);
-        $this->assertCount(4, $list);
 
         $this->assertEquals([3, 3, 5, 8], $list->__toArray());
     }
@@ -24,14 +20,10 @@ class SortedLinkedListTest extends TestCase
     public function testInsertString(): void
     {
         $list = new SortedLinkedList();
-        $this->assertCount(0, $list);
         $list->insert('c');
-        $this->assertCount(1, $list);
         $list->insert('a');
-        $this->assertCount(2, $list);
         $list->insert('d');
         $list->insert('d');
-        $this->assertCount(4, $list);
 
         $this->assertEquals(['a', 'c', 'd', 'd'], $list->__toArray());
     }
@@ -46,7 +38,6 @@ class SortedLinkedListTest extends TestCase
         $this->assertCount(3, $list);
 
         $this->assertTrue($list->remove(3));
-        $this->assertCount(2, $list);
         $this->assertEquals([5, 8], $list->__toArray());
 
         $this->assertFalse($list->remove(10));
@@ -85,22 +76,22 @@ class SortedLinkedListTest extends TestCase
         }
     }
 
-    public function testIsCompatibleType(): void
+    public function testIsValueCompatible(): void
     {
         $listInt = new SortedLinkedList();
         $listString = new SortedLinkedList();
 
-        $this->assertTrue($listInt->isCompatibleType(5));
-        $this->assertTrue($listInt->isCompatibleType('a'));
+        $this->assertTrue($listInt->isValueCompatible(5));
+        $this->assertTrue($listInt->isValueCompatible('a'));
 
-        $this->assertTrue($listString->isCompatibleType(5));
-        $this->assertTrue($listString->isCompatibleType('a'));
+        $this->assertTrue($listString->isValueCompatible(5));
+        $this->assertTrue($listString->isValueCompatible('a'));
 
         $listString->insert('b');
-        $this->assertFalse($listString->isCompatibleType(5));
+        $this->assertFalse($listString->isValueCompatible(5));
 
         $listInt->insert(5);
-        $this->assertFalse($listInt->isCompatibleType('a'));
+        $this->assertFalse($listInt->isValueCompatible('a'));
     }
 
     public function testContains(): void
@@ -119,5 +110,42 @@ class SortedLinkedListTest extends TestCase
         $this->assertFalse($listString->contains(10));
 
         $listInt->remove(5);
+    }
+    
+    public function testCount():void
+    {
+        $list = new SortedLinkedList();
+        $this->assertCount(0, $list);
+        $this->assertTrue($list->isEmpty());
+
+        $list->insert(5);
+        $this->assertCount(1, $list);
+        $this->assertFalse($list->isEmpty());
+        $list->insert(3);
+        $this->assertCount(2, $list);
+        $this->assertFalse($list->isEmpty());
+
+        $list->remove(5);
+        $this->assertCount(1, $list);
+        $this->assertFalse($list->isEmpty());
+        $list->remove(3);
+        $this->assertCount(0, $list);
+        $this->assertTrue($list->isEmpty());
+    }
+    
+    public function testIterator(): void
+    {
+        $list = new SortedLinkedList();
+        $list->insert(5);
+        $list->insert(8);
+        $list->insert(3);
+
+        $expected = [3, 5, 8];
+        $actual = [];
+        foreach ($list as $value) {
+            $actual[] = $value;
+        }
+
+        $this->assertEquals($expected, $actual);
     }
 }

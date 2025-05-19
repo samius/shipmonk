@@ -31,6 +31,38 @@ and then
 composer require samius/sorted-linked-list
 ```
 
+## Usage
+```php
+$list = new SortedLinkedList();
+$list->insert(5);
+$list->insert(3);
+$list->count(); // 2
+$list->insert(3);
+$list->count(); // 3
+$list->insert(1);
+
+$list->remove(3); // true
+$list->remove(300); // false
+
+foreach ($list as $value) {
+  // ...
+}
+
+$list->isEmpty(); // false
+$list->contains(1); // true
+$list->contains('a'); // false
+$list->count(); // 3
+
+$list->isValueCompatible(1); // true
+$list->isValueCompatible('a'); // false
+
+
+
+
+
+
+
+
 ## Checking the homework
 Or you can just clone this repository and run tests, static analysis, and code style checks
 ```bash
